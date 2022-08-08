@@ -40,6 +40,10 @@ compose.desktop {
 			description = "Compose Example App"
 			copyright = "© 2020 My Name. All rights reserved."
             vendor = "Example vendor"
+			licenseFile.set(project.file("LICENSE"))
+			windows{
+				iconFile.set(project.file("src/main/resources/idea-logo.svg"))
+			}
 		}
 	}
 }
