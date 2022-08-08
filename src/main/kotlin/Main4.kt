@@ -1,4 +1,5 @@
 // Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.*
 import androidx.compose.ui.window.AwtWindow
 import androidx.compose.ui.window.application
@@ -11,12 +12,12 @@ fun main() = application {
 		FileDialog(
 			onCloseRequest = {
 				isOpen = false
-				println("Result $it")
 			}
 		)
 	}
 }
 
+@Preview
 @Composable
 private fun FileDialog(
 	parent: Frame? = null,
@@ -24,10 +25,16 @@ private fun FileDialog(
 ) = AwtWindow(
 	create = {
 		object : FileDialog(parent, "Choose a file", LOAD) {
+			init {
+				isMultipleMode = true
+			}
+
 			override fun setVisible(value: Boolean) {
 				super.setVisible(value)
 				if (value) {
 					onCloseRequest(file)
+					println("Result $file")
+					println("Result ${files.joinToString()}")
 				}
 			}
 		}

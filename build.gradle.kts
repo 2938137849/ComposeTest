@@ -39,9 +39,10 @@ compose.desktop {
 			version = "1.0"
 			description = "Compose Example App"
 			copyright = "© 2020 My Name. All rights reserved."
-            vendor = "Example vendor"
+			vendor = "Example vendor"
 			licenseFile.set(project.file("LICENSE"))
-			windows{
+			windows {
+				// jvmArgs += "-Dfile.encoding=UTF-8"
 				iconFile.set(project.file("src/main/resources/idea-logo.svg"))
 			}
 		}

@@ -2,7 +2,7 @@
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
@@ -10,20 +10,20 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.graphics.withSave
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.*
-import androidx.compose.ui.window.Tray
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import org.xml.sax.InputSource
-import java.awt.Desktop
+import tray.mytray
 
 fun main() {
 	application {
 		val icon = painterResource("sample.png")
-		Tray(icon = icon, menu = {
-			Item("Quit app", onClick = ::exitApplication)
-		})
+		mytray()
+		if (true) return@application
 		Window(
-			onCloseRequest = ::exitApplication, icon = icon, title = "my Window"
+			onCloseRequest = ::exitApplication,
+			icon = icon,
+			title = "my Window"
 		) {
 			Text("Hello World")
 			val density = LocalDensity.current // to calculate the intrinsic size of vector images (SVG, XML)
