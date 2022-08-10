@@ -7,6 +7,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.unit.*
 
 @Preview
@@ -15,18 +16,19 @@ fun test() {
 	Row(
 		Modifier.fillMaxWidth().height(IntrinsicSize.Min)
 	) {
-		val isBlank = text.isBlank()
+		var text1 = if (LocalInspectionMode.current) "test" else text
+		val isBlank = text1.isBlank()
 		TextField(
-			value = text,
+			value = text1,
 			onValueChange = {
-				text = it
+				text1 = it
 			},
 			modifier = Modifier.fillMaxWidth(),
 			isError = isBlank,
 			trailingIcon = {
 				Button(
 					onClick = {
-						textList.add(text)
+						textList.add(text1)
 					},
 					modifier = Modifier
 						.clip(RoundedCornerShape(10))
@@ -39,5 +41,4 @@ fun test() {
 			singleLine = false,
 		)
 	}
-
 }
