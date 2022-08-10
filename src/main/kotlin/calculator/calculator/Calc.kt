@@ -1,9 +1,11 @@
 package calculator.calculator
 
+import java.util.LinkedList
+
 class Calc : IValue {
 	/**计算结果*/
-	override val v: Number get() = deque[0].v
-	private val deque = ArrayDeque<IValue>()
+	override val v: Number get() = deque.peekFirst()?.v ?: 0
+	private val deque = LinkedList<IValue>()
 
 	/**计算中产生的其他数据*/
 	val list = mutableListOf<Any>()

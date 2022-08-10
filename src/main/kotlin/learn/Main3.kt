@@ -1,7 +1,8 @@
-// Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+package learn// Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 import androidx.compose.runtime.*
 import androidx.compose.ui.window.*
 import tray.MyTrayIcon
+import util.exitFun
 
 fun main() = application {
 	var count by remember { mutableStateOf(0) }
@@ -27,7 +28,7 @@ fun main() = application {
 		)
 		Item(
 			"Exit",
-			onClick = ::exitApplication
+			onClick = exitFun
 		)
 	}
 }
